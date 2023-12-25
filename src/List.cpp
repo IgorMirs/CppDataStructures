@@ -1,8 +1,16 @@
-#include "List.h"
+#include "../inc/List.h"
 
 template<typename T>
 List<T>::List() {
     init();
+}
+
+
+template<typename T>
+List<T>::~List() {
+    clear();
+    delete head;
+    delete tail;
 }
 
 template<typename T>
@@ -14,6 +22,13 @@ void List<T>::push_back(const T& value) {
     tail->prev = n;
 
     theSize++; 
+}
+
+template<typename T>
+void List<T>::clear() {
+    while(!empty()) {
+        pop_front();
+    }
 }
 
 template <typename T>
@@ -65,6 +80,15 @@ T& List<T>::front() {
     }
 }
 
+template<typename T>
+T& List<T>::back() {
+    if (!empty()) {
+        return tail->prev->data;
+    }
+    else {
+        throw "Empty list";
+    }
+}
 
 template<typename T>
 bool List<T>::empty() const {
@@ -93,4 +117,57 @@ void List<T>::init() {
     tail = new Node<int>(0);
     head->next = tail;
     tail->prev = head;
+}
+
+template<typename T>
+void List<T>::insert(unsigned pos, const T& value) {
+    if (size() < pos) {
+        throw "Cannot insert";
+    }
+    else {
+        unsigned cur_pos = 0;
+        Node<T>* cur = head->next;
+        while (cur_pos != pos) {
+            cur = cur->next;
+            cur_pos++;
+        }
+        Node<T>* new_node = new Node<T>(value, cur, cur->prev);
+        new_node->prev->next = new_node;
+        cur->prev = new_node;
+        theSize++;
+    }
+}
+
+template<typename T>
+void List<T>::erase(unsigned pos) {
+    if (size() < pos) {
+        throw "Cannot erase";
+    }
+    else {
+        Node<T>* to_delete = find(pos);
+        if (to_delete) {
+            puts("here");
+            to_delete->next->prev = to_delete->prev;
+            to_delete->prev->next = to_delete->next;
+            delete to_delete;
+            theSize--;
+        }
+    }
+}
+
+template<typename T>
+Node<T>* List<T>::find(unsigned pos) {
+    if (pos >= size()) {
+        puts("E");
+        return nullptr;
+    }
+    else {
+        unsigned cur_pos = 0;
+        Node<T>* cur = head->next;
+        while (cur_pos != pos) {
+            cur = cur->next;
+            cur_pos++;
+        }
+        return cur;
+    }
 }

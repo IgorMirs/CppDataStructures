@@ -31,7 +31,7 @@ $(TARGET) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
 #Compile
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/%.h
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp #$(INC_DIR)/%.h
 	@mkdir -p $(dir $@)
 	$(CC) $(INC) -c $< -o $@
 

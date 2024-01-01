@@ -5,6 +5,26 @@ List<T>::List() {
     init();
 }
 
+template<typename T>
+List<T>::List(const List<T>& other) {
+    init();
+    Node<T>* cur = other.head->next;
+    while (cur != other.tail) {
+        push_back(cur->data);
+        cur = cur->next;
+    }
+}
+
+
+template<typename T>
+List<T>& List<T>::operator=(const List<T>& other) {
+    clear();
+    Node<T>* cur = other.head->next;
+    while (cur != other.tail) {
+        push_back(cur->data);
+        cur = cur->next;
+    }
+}
 
 template<typename T>
 List<T>::~List() {
@@ -46,6 +66,7 @@ template<typename T>
 int List<T>::size() const {
     return theSize;
 }
+
 
 template<typename T>
 void List<T>::pop_back() {

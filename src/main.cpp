@@ -12,7 +12,7 @@ int main() {
     // l.push_back(3);
     // l.push_front(4);
     // l.push_front(5);
-     l.push_front(6);
+    l.push_front(6);
     // l.print();
 
     l.insert(0, 100);
@@ -20,7 +20,13 @@ int main() {
     // l.insert(2, 100);
     l.print();
 
-    puts("main end");
+    List<int> d(l);
+    d.print();
+   
+   
+    List<int> f = d;
+    f.print();
 
+    puts("main end");
     return 0;
 }

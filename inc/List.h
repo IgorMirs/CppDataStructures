@@ -7,7 +7,12 @@ template <typename T>
 class List {
 public:
     List();
+    //copy constructor
+    List(const List<T>& other);
+
     ~List(); //8
+
+    List<T>& operator=(const List<T>& other);
 
     void push_back(const T&);
     void push_front(const T&); //to implement in class

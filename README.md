@@ -1,2 +1,2 @@
 # DataStructures
-Implementation of different data structures in C++.
+This project features a comprehensive collection of fundamental data structures implemented in C++. It includes singly and doubly linked lists for linear data storage, queues and stacks for FIFO and LIFO access respectively, and binary search trees (BST) for efficient sorted data management. Additionally, it covers self-balancing AVL trees for optimized search operations, tries for efficient string manipulation, and graphs represented using adjacency matrices and lists for networked data. Each structure supports standard operations such as insertion, deletion, and search, alongside traversal methods where applicable. 
